@@ -1,0 +1,13 @@
+Package: ESLestimation
+Type: Package
+Title: Estimation of extreme sea levels (ESLs)
+Version: 1.0.4
+Date: 2024-01-26
+Author: Eleanor D'Arcy <e.darcy@lancaster.ac.uk>
+Maintainer: Eleanor D'Arcy <e.darcy@lancaster.ac.uk>
+Description: Estimates sea level return levels using the methodology developed by D'Arcy, Tawn, Joly and Sifnioti (2023) <doi:10.1214/23-AOAS1773>. This method fits a non-stationary generalised Pareto distribution to skew surges, then carefully combines this with the peak tides by choosing tidal samples to reflect within and inter-year variability. Return levels can then be estimated for a specified return period and confidence intervals are obtained via a new stationary bootstrap procedure.
+Imports: dplyr,spatstat,extRemes,Rdpack,mathjaxr
+License: What license is it under?
+RoxygenNote: 7.2.0
+RdMacros: Rdpack,mathjaxr
+
