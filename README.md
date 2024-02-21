@@ -1,4 +1,4 @@
-# ESLestimation
+# ESLestimation🌊
 
 ## Welcome to our R package for estimating extreme sea levels (ESLs)!
 
@@ -13,4 +13,4 @@ To install the package, please use the following commands
 > 
 > `library(ESLestimation)`
 
-If you have any questions, please don't hesitate to contact me: e.darcy(at)lancaster.ac.uk 
+If you have any questions, please don't hesitate to contact me: e.darcy(at)lancaster.ac.uk 👩‍💻
