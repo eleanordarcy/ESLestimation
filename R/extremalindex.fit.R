@@ -1,4 +1,4 @@
-#' Fit a non-stationary regression model to the GPD rate parameter
+#' Fit a parametric model to empirical estimates of the extremal index.
 #' 
 #' @name extremalindex.fit
 #' 
@@ -10,11 +10,11 @@
 #' 
 #' @return 2 parameters for the extremal index model fit.
 #' 
-#' @details \loadmathjax{} The extremalindex.fit consists of two stages. 
+#' @details \loadmathjax{} The \code{extremalindex.fit} consists of two stages. 
 #' For values below the threshold (defined by \code{thresh.quantile}), the empirical runs estimate is used as this is smooth over skew surges in this range. 
 #' For computational efficiency purposes, these empirical estimates are evaluated on a regular grid of 100 values from the minimum skew surge up to this threshold. 
-#' The empirical runs estimate is found using the \code{evd} package.
-#' Linear interpolation is used to values between those on the regular grid; the \code{linear.interp} function does this step. 
+#' The empirical runs estimate is found using the \code{extRemes} R package.
+#' Linear interpolation is used for values between those on the regular grid; the \code{linear.interp} function does this step. 
 #' 
 #' For skew surges above the threshold, we use the parametric form \mjeqn{\hat\theta(y,r)=\theta-[\theta-\tilde{\theta}(v,r)]\exp\big(-\frac{y-v}{\psi}\big)}{see equation (4.16) in the manuscript} where \mjeqn{y}{y} is the skew surge observation, \mjeqn{v}{v} the threshold, \mjeqn{r}{r} the pre-specified run length, \mjeqn{\tilde{\theta}(v,r)}{tilde(theta)(v,r)} is the empirical runs estimate at the threshold \mjeqn{v}{v} with run length \mjeqn{r}{r}, and \mjeqn{\psi>0, \tilde{\theta}(v,r)\leq\theta\leq1}{psi>0, tilde(theta) <= theta <= 1} are parameters to be estimated.
 #' 
