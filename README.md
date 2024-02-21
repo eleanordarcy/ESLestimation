@@ -8,7 +8,9 @@ There are 5 functions of interest to the user, each with detailed documentation 
 
 To install the package, please use the following commands
 > `library(devtools)`
+> 
 > `install_github('eleanordarcy/ESLestimation')`
+> 
 > `library(ESLestimation)`
 
 If you have any questions, please don't hesitate to contact me: e(dot)darcy(at)lancaster.ac.uk :) 
