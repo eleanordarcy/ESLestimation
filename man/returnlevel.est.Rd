@@ -40,30 +40,30 @@ Return level sea level estimate (in metres).
 }
 \details{
 \loadmathjax{} To estimate sea level return levels, we use the derived annual maxima distribution for sea levels of \insertCite{DArcy2023;textual}{ESLestimation}.
-This uses the fact that sea levels \mjeqn{Z}{Z} can be decomposed into skew surge \mjeqn{Y}{Y} and peak tide \mjeqn{X}{X}. 
-We detail the methodology for estimating return levels below, with simplified notation but refer the reader to \insertCite{DArcy2023;textual}{ESLestimation} for details.
+This uses the fact that sea levels \mjeqn{Z}{Z} can be decomposed into the sum of skew surge \mjeqn{Y}{Y} and peak tide \mjeqn{X}{X}. 
+We summarise the methodology for estimating return levels below, with simplified notation but refer the reader to \insertCite{DArcy2023;textual}{ESLestimation} for details.
 
-Skew surges are modelled using non-stationary GPD, for exceedances of a monthly threshold, and a non-stationary monthly empirical distribution for non-exceedances.
+Skew surges are modelled using a non-stationary GPD, for exceedances of a monthly threshold (\code{gpd.quantile}), and a non-stationary monthly empirical distribution for non-exceedances.
 We account for non-stationarity in terms of seasonality and skew surge-peak tide dependence, using daily, monthly and peak covariates within the model.
-This model is fit using the \code{\link{GPD.fit}} function (see \code{\link{GPD.fit}} documentation for details) and the output of that function (i.e., the GPD parameter estimates) are used as an input to this function.
+This model is fit using the \code{\link{GPD.fit}} function and the output of that function (i.e., the GPD parameter estimates) are used as an input to this function.
 The rate parameter is separately modelled, with the same covariate information, through the \code{\link{rateparam.fit}} function and its output is also an input to this function.
-Lastly, we model the temporal dependence of skew surges through a model for the extremal index (see \code{\link{extremalindex.fit}} documentation for details), the output to this function is used as a input to this function.
+Lastly, we model the temporal dependence of skew surges through a model for the extremal index (see \code{\link{extremalindex.fit}} documentation for details), the output to this function is used as an input to this function.
 The distribution function is given by \code{skewsurge.dist}.
 
 As tides are deterministic, we chose tidal samples to input into our skew surge distribution to derive a model for the skew surges.
 This is done via a joint probability methodology, assumed that skew surge-peak tide dependence has been fully captured through the non-stationary skew surge model.
 So that, \mjeqn{Pr(Z\leq z)=\Pr(X+Y\leq z)=\Pr(Y\leq z-X)=F_{Y}(z-X)}{see equation (4.2) in the manuscript}.
-Then the annual maxima distribution for sea levels is found by taking the product over the skew surge distribution, for observations and their assoiated covariates within a year.
+Then the annual maxima distribution for sea levels is found by taking the product over the skew surge distribution, for observations and their associated covariates within a year.
 Since skew surges are not independent, use the extremal index model \mjeqn{\hat\theta}{hat(theta)} as follows: \mjeqn{\Pr(M\leq z) = \prod F_Y(z-X)^{\hat\theta}}{see equation (4.2) in the manuscript} for \mjeqn{M}{M} denoting the annual maximum sea level.
 To account for seasonality, we first derive the monthly maxima distribution using month-specific tidal series.
-This is given by the \code{monmax.dist} function
+This is given by the \code{monmax.dist} function.
 To account for interannual tidal variations, we do this for each year in the record, using the associated tidal sequence, and then average over all years.
 The annual maxima distribution function is given by \code{annmax.dist} below.
 
-We use a numerical solver (\code{\link[stats]{uniroot}}) to find the return level \mjeqn{z_p}{z_p} for the associate annual exceedance probablity \mjeqn{p}{p}.
+We use a numerical solver (\code{\link[stats]{uniroot}}) to find the return level \mjeqn{z_p}{z_p} for the associate annual exceedance probability \mjeqn{p}{p}.
 That is, to solve the equation \mjeqn{\Pr(M \leq z_p) = 1 - p}{ P(Z < z_p) = 1-p}.
-Uniroot requires an interval to test over for values of \mjeqn{z_p}{z_p} which are set as the 0.5 quantile of sea levels and the maximum sea level plus 3m for the lower and upper endpoints, respectively.
-If these endpoints are not wide enough, they will be increased by 0.1m.
+Uniroot requires an interval to test over for values of \mjeqn{z_p}{z_p} which is set as the 0.5 quantile of sea levels and the maximum sea level plus 3m for the lower and upper endpoints, respectively.
+If these endpoints are not wide enough, they will be increased by 0.1m recursively.
 }
 \examples{
 
@@ -80,7 +80,7 @@ head(Lowestoft)
 # Use model fit functions to get parameter estimates for the GPD, rate and extremal index.
 # Default quantiles and run length are used.
 # This takes ~18 minutes to run for a single probability p.
-( RL <- returnlevel.est(0.1, Lowestoft, gpd_par=GPD.fit(Lowestoft), rate_par=rateparam.fit(Lowestoft), extremalindex_par=extremalindex.fit(Lowestoft)) )
+RL <- returnlevel.est(0.1, Lowestoft, gpd_par=GPD.fit(Lowestoft), rate_par=rateparam.fit(Lowestoft), extremalindex_par=extremalindex.fit(Lowestoft))
 
 }
 \references{
