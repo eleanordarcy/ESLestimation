@@ -60,7 +60,7 @@ CI.est <- function(p, data, ci.prob, gpd_par, rate_par, extremalindex_par, block
   
   N <- length(data$year)
   
-  data.unif <- get.data.unif.margins(data=data, par=c(gpd_par, rate_par), emp=empiricals)
+  data.unif <- get.data.unif.margins(data=data, par=c(gpd_par, rate_par), emp=empiricals, q=gpd.quantile)
   
   set.seed(111)
   for(j in 1:n.boot){
