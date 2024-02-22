@@ -45,7 +45,7 @@ CI.est(
 \item{EI.quantile}{The quantile of skew surges for the extremal index model, above which the exponential decay model is required, i.e., the empirical estimates become noisy above this value. This is a single value between 0 and 1. The default is the 0.99-quantile.}
 }
 \value{
-(1-\code{ci.prob}/2)), 0.5, \code{ci.prob}(1-\code{ci.prob}/2)) quantiles of return level sea level estimates (in metres) over the specified number of bootstrap samples.
+(1-\code{ci.prob}/2)), 0.5, \code{ci.prob}+(1-\code{ci.prob}/2)) quantiles of return level sea level estimates (in metres) over the specified number of bootstrap samples.
 }
 \description{
 This function gives confidence intervals on the sea level return level estimates from the non-stationary model of \insertCite{DArcy2023;textual}{ESLestimation}.

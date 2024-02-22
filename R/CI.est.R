@@ -17,7 +17,7 @@
 #' @param EI.run.length This is the number of consecutive non-exceedances between two extreme observations, where we would say they belong to different clusters (as for the standard runs estimate). This is used for fitting the extremal index model. The default is 10 (i.e., 5 days) but can be inferred from autocorrelation (acf) plots, i.e., the maximum lag before the acf remains close to zero.
 #' @param EI.quantile The quantile of skew surges for the extremal index model, above which the exponential decay model is required, i.e., the empirical estimates become noisy above this value. This is a single value between 0 and 1. The default is the 0.99-quantile.
 #' 
-#' @return (1-\code{ci.prob}/2)), 0.5, \code{ci.prob}(1-\code{ci.prob}/2)) quantiles of return level sea level estimates (in metres) over the specified number of bootstrap samples.
+#' @return (1-\code{ci.prob}/2)), 0.5, \code{ci.prob}+(1-\code{ci.prob}/2)) quantiles of return level sea level estimates (in metres) over the specified number of bootstrap samples.
 #' 
 #' @details \loadmathjax{} A stationary bootstrap procedure is used to obtain confidence intervals on the sea level return level estimates given by the \code{\link{returnlevel.est}} function.
 #' The block length is simulated from a Geometric distribution with mean as the reciprocal of the input \code{block.length}. 
