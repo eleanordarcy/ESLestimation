@@ -14,3 +14,5 @@ To install and load the package, please use the following commands
 > `library(ESLestimation)`
 
 If you have any questions, please don't hesitate to contact me: e.darcy(at)lancaster.ac.uk 👩‍💻
+
+Disclaimer: This tool is based on work completed while Eleanor D’Arcy was part of the EPSRC funded STOR-i centre for doctoral training (EP/S022252/1) with EDF Group as the industrial supervisor/sponsor. We would like to thank Daniel Grose (Lancaster University) for his support in building this R package. 
